@@ -1,4 +1,5 @@
-[
+{
+ "results" :[
   {
     "ID": 1,
     "Name": "The Legend of Zelda",
@@ -189,4 +190,5 @@
     "Dungeons": 5,
     "Remakes": "No"
   }
-]
+ ]
+}
