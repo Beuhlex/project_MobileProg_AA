@@ -33,23 +33,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        makeApiCall();
+    }
+
+    private void showList(List<ZeldaGames> lozGamesList){
         recyclerView = findViewById(R.id.recycler_view);
-        // use this setting to
-        // improve performance if you know that changes
-        // in content do not change the layout size
-        // of the RecyclerView
+
         recyclerView.setHasFixedSize(true);
-        // use a linear layout manager
+
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         final List<String> input = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
-        }// define an adapter
-        mAdapter = new ListAdapter(input);
-        recyclerView.setAdapter(mAdapter);
 
-        makeApiCall();
+        mAdapter = new ListAdapter(lozGamesList);
+        recyclerView.setAdapter(mAdapter);
     }
 
     private void makeApiCall(){
@@ -70,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<RestZeldaGamesResponse> call, Response<RestZeldaGamesResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<ZeldaGames> zeldaGamesList = response.body().getResults();
-                    Toast.makeText(getApplicationContext(), "API Success", Toast.LENGTH_SHORT).show();
+                    showList(zeldaGamesList);
                 }else{
                     showError();
                 }
