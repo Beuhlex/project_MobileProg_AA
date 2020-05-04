@@ -1,16 +1,19 @@
 package com.example.project_mobileprog_aa;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private SharedPreferences sharedPreferences;
+    private Gson gson;
 
     private static final String BASE_URL = "https://raw.githubusercontent.com/Beuhlex/project_MobileProg_AA/master/";
 
@@ -33,7 +38,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        makeApiCall();
+        sharedPreferences = getSharedPreferences("app_AA", Context.MODE_PRIVATE);
+
+        gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        List<ZeldaGames> lozGamesList = getDataFromCache();
+
+        if(lozGamesList != null){
+            showList(lozGamesList);
+        }else{
+            makeApiCall();
+        }
+    }
+
+    private List<ZeldaGames> getDataFromCache() {
+        String jsonLozGames = sharedPreferences.getString("Constant.KEY_LOZGAMES_LIST", null);
+
+        if(jsonLozGames == null){
+            return null;
+        }else{
+            Type listType = new TypeToken<List<ZeldaGames>>(){}.getType();
+            return gson.fromJson(jsonLozGames, listType);
+        }
     }
 
     private void showList(List<ZeldaGames> lozGamesList){
@@ -50,9 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void makeApiCall(){
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -67,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<RestZeldaGamesResponse> call, Response<RestZeldaGamesResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<ZeldaGames> zeldaGamesList = response.body().getResults();
+                    saveList(zeldaGamesList);
                     showList(zeldaGamesList);
                 }else{
                     showError();
@@ -78,6 +105,17 @@ public class MainActivity extends AppCompatActivity {
                 showError();
             }
         });
+
+    }
+
+    private void saveList(List<ZeldaGames> lozList){
+        String jsonString = gson.toJson(lozList);
+        sharedPreferences
+                .edit()
+                .putString("Constant.KEY_LOZGAMES_LIST", jsonString)
+                .apply();
+
+        Toast.makeText(getApplicationContext(), "List Saved", Toast.LENGTH_SHORT).show();
 
     }
 
