@@ -22,7 +22,7 @@
   },
   {
     "ID": 3,
-    "Name": "The Legend of Zelda: A Link to the Past",
+    "Name": "A Link to the Past",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/f/f9/Zelda_SNES.jpg/320px-Zelda_SNES.jpg?version=25c0e1138a8c19132fdaa9f8fc14843c",
     "Release_year_in_Europe": 1992,
     "Modes": "Single player",
@@ -32,7 +32,7 @@
   },
   {
     "ID": 4,
-    "Name": "The Legend of Zelda: Link's Awakening",
+    "Name": "Link's Awakening",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/0/07/Link%27s_Awakening_US_boxart.jpg/320px-Link%27s_Awakening_US_boxart.jpg?version=6b10224788f44069f376d77a98a5b78f",
     "Release_year_in_Europe": 1993,
     "Modes": "Single player",
@@ -42,7 +42,7 @@
   },
   {
     "ID": 5,
-    "Name": "The Legend of Zelda: Ocarina of Time",
+    "Name": "Ocarina of Time",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/4/48/OoT_NA_Box.jpg/300px-OoT_NA_Box.jpg?version=b1b4748638144d0d38e7327809fdb0df",
     "Release_year_in_Europe": 1998,
     "Modes": "Single player",
@@ -52,7 +52,7 @@
   },
   {
     "ID": 6,
-    "Name": "The Legend of Zelda: Majora's Mask",
+    "Name": "Majora's Mask",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/a/a8/Majora_box.jpg/300px-Majora_box.jpg?version=4020d8eace9d03d431b443562f677e51",
     "Release_year_in_Europe": 2000,
     "Modes": "Single player",
@@ -62,7 +62,7 @@
   },
   {
     "ID": 7,
-    "Name": "The Legend of Zelda: Oracle of Seasons",
+    "Name": "Oracle of Seasons",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/a/a7/Oracleofseasons.jpg/300px-Oracleofseasons.jpg?version=d8de0ebaf7a1264ce6760ab55e16676b",
     "Release_year_in_Europe": 2001,
     "Modes": "Single player",
@@ -72,7 +72,7 @@
   },
   {
     "ID": 8,
-    "Name": "The Legend of Zelda: Oracle of Ages",
+    "Name": "Oracle of Ages",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/4/45/Oracleofages.jpg/300px-Oracleofages.jpg?version=e2c74a2ddf46357ba9ce2d8c46f77ba5",
     "Release_year_in_Europe": 2001,
     "Modes": "Single player",
@@ -82,7 +82,7 @@
   },
   {
     "ID": 9,
-    "Name": "The Legend of Zelda: Four Swords",
+    "Name": "Four Swords",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/6/6c/Four_Swords_Box.png/300px-Four_Swords_Box.png?version=19a8086a8073b4f30601342b77ea91e9",
     "Release_year_in_Europe": 2002,
     "Modes": "Single player",
@@ -92,7 +92,7 @@
   },
   {
     "ID": 10,
-    "Name": "The Legend of Zelda: The Wind Waker",
+    "Name": "The Wind Waker",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/4/45/TWW_US_Box.jpg/211px-TWW_US_Box.jpg?version=40e953b511d2941ab179ddad5705bc53",
     "Release_year_in_Europe": 2003,
     "Modes": "Single player",
@@ -102,7 +102,7 @@
   },
   {
     "ID": 11,
-    "Name": "The Legend of Zelda: Four Swords Adventures",
+    "Name": "Four Swords Adventures",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/3/39/FourSwordsA_Box.jpg/212px-FourSwordsA_Box.jpg?version=2df4d9fec15e5df5019ebec01d1ae22e",
     "Release_year_in_Europe": 2005,
     "Modes": "Single player, Multi player",
@@ -112,7 +112,7 @@
   },
   {
     "ID": 12,
-    "Name": "The Legend of Zelda: The Minish Cap",
+    "Name": "The Minish Cap",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/9/93/ZeldaMinishCap_BoxArt.jpg/300px-ZeldaMinishCap_BoxArt.jpg?version=2e01e4eed5460d909532632b716bf1e4",
     "Release_year_in_Europe": 2004,
     "Modes": "Single player",
@@ -122,7 +122,7 @@
   },
   {
     "ID": 13,
-    "Name": "The Legend of Zelda: Twilight Princess",
+    "Name": "Twilight Princess",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/3/38/Twilight_Princess_GCN_US_boxart.jpg/214px-Twilight_Princess_GCN_US_boxart.jpg?version=5107ebc5b5f4918ea6d26e7c4f4d130a",
     "Release_year_in_Europe": 2006,
     "Modes": "Single player",
@@ -132,7 +132,7 @@
   },
   {
     "ID": 14,
-    "Name": "The Legend of Zelda: Phantom Hourglass",
+    "Name": "Phantom Hourglass",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/b/b4/Phantomhour.jpg/300px-Phantomhour.jpg?version=2d0c22a67aff931641b2a4c6c980cabf",
     "Release_year_in_Europe": 2007,
     "Modes": "Single player",
@@ -142,7 +142,7 @@
   },
   {
     "ID": 15,
-    "Name": "The Legend of Zelda: Spirit Tracks",
+    "Name": "Spirit Tracks",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/f/f2/Spirit_Tracks_Cover.jpg/300px-Spirit_Tracks_Cover.jpg?version=ee1f94c3123bf7131efd072c2c0108d7",
     "Release_year_in_Europe": 2009,
     "Modes": "Single player",
@@ -152,7 +152,7 @@
   },
   {
     "ID": 16,
-    "Name": "The Legend of Zelda: Skyward Sword",
+    "Name": "Skyward Sword",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/9/9d/Skyward_Sword_US_Box_Art.jpg/213px-Skyward_Sword_US_Box_Art.jpg?version=3e545861a04b1f068113b4437f9603ef",
     "Release_year_in_Europe": 2011,
     "Modes": "Single player",
@@ -162,7 +162,7 @@
   },
   {
     "ID": 17,
-    "Name": "The Legend of Zelda: A Link Between Worlds",
+    "Name": "A Link Between Worlds",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/4/46/A_Link_Between_Worlds_cover.jpg/300px-A_Link_Between_Worlds_cover.jpg?version=4e01ad2275b67dfc8e4ffb4cabf9bc49",
     "Release_year_in_Europe": 2013,
     "Modes": "Single player",
@@ -172,7 +172,7 @@
   },
   {
     "ID": 18,
-    "Name": "The Legend of Zelda: Tri Force Heroes",
+    "Name": "Tri Force Heroes",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/9/98/TFH_NA_Box_Art.png/320px-TFH_NA_Box_Art.png?version=e9f28bb72d9cc504956b5816341c7e0c",
     "Release_year_in_Europe": 2015,
     "Modes": "Single player, Multi player",
@@ -182,7 +182,7 @@
   },
   {
     "ID": 19,
-    "Name": "The Legend of Zelda: Breath of the Wild",
+    "Name": "Breath of the Wild",
     "img_Cover_URL": "https://gamepedia.cursecdn.com/zelda_gamepedia_en/thumb/c/c7/BotW_NA_Switch_Box_Art.png/185px-BotW_NA_Switch_Box_Art.png?version=1ec725386d7eddfd8af1a399df4291e6",
     "Release_year_in_Europe": 2017,
     "Modes": "Single player",
