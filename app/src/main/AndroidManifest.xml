@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".itemDescription">
+        <activity android:name=".itemDescription"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
     </application>
