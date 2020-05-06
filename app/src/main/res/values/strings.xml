@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">project_MobileProg_AA</string>
+    <string name="app_name">TLOZ Games List</string>
 
     <string name="gameName">Name: %s </string>
     <string name="gameRelease">Release year in Europe: %d</string>
