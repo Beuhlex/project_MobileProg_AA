@@ -1,6 +1,7 @@
 package com.example.project_mobileprog_aa;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
     private SharedPreferences sharedPreferences;
     private Gson gson;
     private List<ZeldaGames> lozGamesList;
+    private Toolbar toolbar;
 
     private static final String BASE_URL = "https://raw.githubusercontent.com/Beuhlex/project_MobileProg_AA/master/";
 
@@ -53,6 +55,12 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
         }else{
             makeApiCall();
         }
+
+        //Create a toolbar so that we can customize the title and put the name of the game on which the user clicked
+        toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.app_name);
     }
 
     private List<ZeldaGames> getDataFromCache() {
