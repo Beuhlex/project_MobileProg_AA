@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -23,13 +24,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ListAdapter.OnGameListener {
 
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private SharedPreferences sharedPreferences;
     private Gson gson;
+    private List<ZeldaGames> lozGamesList;
 
     private static final String BASE_URL = "https://raw.githubusercontent.com/Beuhlex/project_MobileProg_AA/master/";
 
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 .setLenient()
                 .create();
 
-        List<ZeldaGames> lozGamesList = getDataFromCache();
+        lozGamesList = getDataFromCache();
 
         if(lozGamesList != null){
             showList(lozGamesList);
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         final List<String> input = new ArrayList<>();
 
-        mAdapter = new ListAdapter(lozGamesList);
+        mAdapter = new ListAdapter(lozGamesList, this);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -121,5 +123,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void showError() {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGameClick(int position) {
+        String jsonString = gson.toJson(lozGamesList);
+
+
+        Intent intent = new Intent(this, itemDescription.class);
+        intent.putExtra("EXTRA_LIST", jsonString);
+        intent.putExtra("EXTRA_POSITION", position);
+        startActivity(intent);
     }
 }

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">project_MobileProg_AA</string>
+
+    <string name="gameName">Name: %s </string>
+    <string name="gameRelease">Release year in Europe: %d</string>
+    <string name="gameModes">Game modes: %s</string>
+    <string name="gamePlatform">Original Game Platform: %s</string>
+    <string name="gameDungeons">Number of dungeons available: %d</string>
+    <string name="gameRemakes">Has this game remakes? %s</string>
 </resources>
