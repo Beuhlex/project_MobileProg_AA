@@ -3,96 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/itemDescRemakes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="@string/gameRemakes"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.179"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/itemDescName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/gameName"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/itemDescReleaseYear"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameCover"
-        app:layout_constraintVertical_bias="1.0" />
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
 
     <ImageView
         android:id="@+id/gameCover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/itemDescName"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/itemDescReleaseYear"
-        android:layout_width="wrap_content"
+        android:id="@+id/itemDescGeneral"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/gameRelease"
-        app:layout_constraintBottom_toTopOf="@+id/itemDescModes"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FFFFFF"
+        android:elevation="10dp"
+        android:text="@string/generalCharacteristics"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDescName" />
-
-    <TextView
-        android:id="@+id/itemDescModes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/gameModes"
-        app:layout_constraintBottom_toTopOf="@+id/itemDescPlatforms"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDescReleaseYear" />
-
-    <TextView
-        android:id="@+id/itemDescPlatforms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/gamePlatform"
-        app:layout_constraintBottom_toTopOf="@+id/itemDescDungeons"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.175"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDescModes" />
-
-    <TextView
-        android:id="@+id/itemDescDungeons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="@string/gameDungeons"
-        app:layout_constraintBottom_toTopOf="@+id/itemDescRemakes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.217"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemDescPlatforms" />
+        app:layout_constraintTop_toBottomOf="@+id/gameCover"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

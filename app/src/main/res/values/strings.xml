@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">TLOZ Games List</string>
 
-    <string name="gameName">Name: %s </string>
-    <string name="gameRelease">Release year in Europe: %d</string>
-    <string name="gameModes">Game modes: %s</string>
-    <string name="gamePlatform">Original Game Platform: %s</string>
-    <string name="gameDungeons">Number of dungeons available: %d</string>
-    <string name="gameRemakes">Has this game remakes? %s</string>
+    <string name="generalCharacteristics">General Characteristics\n\n
+                                            \t\t\tName: %s\n
+                                            \t\t\tRelease year in Europe: %d\n
+                                            \t\t\tGame modes: %s\n
+                                            \t\t\tOriginal Game Platform: %s\n
+                                            \t\t\tNumber of dungeons available: %d\n
+                                            \t\t\tHas this game remakes? %s</string>
 </resources>
