@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -70,8 +73,20 @@ public class itemDescription extends AppCompatActivity{
         actionToolbar.setTitleTextColor(0xFFFFFFFF);
         setSupportActionBar(actionToolbar);
         getSupportActionBar().setTitle(gameClicked.getName());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) { //creates action menu
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
 
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {  //detects what item is selected
+        return super.onOptionsItemSelected(item);
+    }
 }

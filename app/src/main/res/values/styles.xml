@@ -8,9 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Deletes the action bar. -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- White secondary items on the toolbar. -->
+    <style name="WhiteSecondaryItems" parent="AppTheme">
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <!-- Menu Item Theme. -->
+    <style name="CustomPopupStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="overlapAnchor">false</item>
     </style>
 
 </resources>

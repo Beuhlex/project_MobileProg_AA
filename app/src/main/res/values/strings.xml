@@ -8,4 +8,6 @@
                                             \t\t\tOriginal Game Platform: %s\n
                                             \t\t\tNumber of dungeons available: %d\n
                                             \t\t\tHas this game remakes? %s</string>
+
+    <string name="menu_about">About</string>
 </resources>

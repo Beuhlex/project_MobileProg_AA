@@ -42,6 +42,8 @@
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/WhiteSecondaryItems"
+        app:popupTheme="@style/CustomPopupStyle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

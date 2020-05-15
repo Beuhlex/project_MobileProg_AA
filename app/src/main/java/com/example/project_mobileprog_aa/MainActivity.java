@@ -1,5 +1,6 @@
 package com.example.project_mobileprog_aa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -61,6 +65,20 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
         toolbar.setTitleTextColor(0xFFFFFFFF);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.app_name);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) { //creates action menu
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {  //detects what item is selected
+        return super.onOptionsItemSelected(item);
     }
 
     private List<ZeldaGames> getDataFromCache() {
