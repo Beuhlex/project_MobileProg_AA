@@ -6,4 +6,6 @@
 
     <color name="descSectionTitle">#9c6a6a</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="generalBackground">#F5F5F5</color>
 </resources>

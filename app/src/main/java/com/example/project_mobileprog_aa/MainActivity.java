@@ -78,6 +78,18 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {  //detects what item is selected
+        switch(item.getItemId())
+        {
+            case R.id.about:
+                Intent intent = new Intent(this, aboutActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.dark_mode:
+                //dark_mode
+                break;
+            default:
+                //unknown error
+        }
         return super.onOptionsItemSelected(item);
     }
 

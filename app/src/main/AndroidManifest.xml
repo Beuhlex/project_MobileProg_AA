@@ -27,6 +27,11 @@
                 android:value="com.example.project_mobileprog_aa.MainActivity"/>
 
         </activity>
+        <activity android:name=".aboutActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

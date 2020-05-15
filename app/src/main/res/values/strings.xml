@@ -10,4 +10,9 @@
                                             \t\t\tHas this game remakes? %s</string>
 
     <string name="menu_about">About</string>
+    <string name="dark_mode">Dark Mode</string>
+
+    <string name="about">This application was created by Aurelien Andrieux as a project for his school.\n
+                            A big part of the design have been inspired by the app "BOI: Rebirth Guide"! Go check their awesome app if you play The Binding of Isaac !
+                        </string>
 </resources>

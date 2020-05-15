@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="@color/generalBackground">
 
     <ImageView
         android:id="@+id/gameCover"
@@ -24,7 +24,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         android:elevation="10dp"
         android:text="@string/generalCharacteristics"
         app:layout_constraintBottom_toBottomOf="parent"

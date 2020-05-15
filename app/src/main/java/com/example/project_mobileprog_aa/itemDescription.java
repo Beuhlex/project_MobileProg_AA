@@ -1,5 +1,6 @@
 package com.example.project_mobileprog_aa;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -87,6 +88,18 @@ public class itemDescription extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {  //detects what item is selected
+        switch(item.getItemId())
+        {
+            case R.id.about:
+                Intent intent = new Intent(this, aboutActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.dark_mode:
+                //dark_mode
+                break;
+            default:
+                //unknown error
+        }
         return super.onOptionsItemSelected(item);
     }
 }
