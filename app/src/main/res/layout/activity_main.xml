@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
-        android:background="@color/generalBackground"
+        android:background="?attr/bgColor"
         android:scrollbars="vertical"
         app:layout_constraintTop_toTopOf="@+id/toolbar_actionbar"
         tools:layout_editor_absoluteX="16dp" />
@@ -20,7 +20,7 @@
         android:id="@+id/toolbar_actionbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="?attr/toolbarColor"
         android:fitsSystemWindows="true"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"

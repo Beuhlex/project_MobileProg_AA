@@ -2,6 +2,7 @@ package com.example.project_mobileprog_aa;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
 
         sharedPreferences = getSharedPreferences("app_AA", Context.MODE_PRIVATE);
 
@@ -53,6 +54,13 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
                 .create();
 
         lozGamesList = getDataFromCache();
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.darkTheme);
+        }else{
+            setTheme(R.style.lightTheme);
+        }
+        setContentView(R.layout.activity_main);
 
         if(lozGamesList != null){
             showList(lozGamesList);
@@ -73,6 +81,13 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu, menu);
 
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            menu.getItem(0).setChecked(true);
+        }else{
+            menu.getItem(0).setChecked(false);
+        }
+
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -85,7 +100,11 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
                 startActivity(intent);
                 break;
             case R.id.dark_mode:
-                //dark_mode
+                if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
                 break;
             default:
                 //unknown error

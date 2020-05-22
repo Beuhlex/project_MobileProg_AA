@@ -6,6 +6,10 @@
 
     <color name="descSectionTitle">#9c6a6a</color>
     <color name="white">#FFFFFF</color>
+    <color name="darkerWhite">#F5F5F5</color>
+    <color name="darkGrey">#353535</color>
+    <color name="neutralGrey">#555555</color>
+    <color name="lightGrey">#757575</color>
+    <color name="black">#000000</color>
 
-    <color name="generalBackground">#F5F5F5</color>
 </resources>

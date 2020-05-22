@@ -19,18 +19,11 @@ public class aboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.darkTheme);
         setContentView(R.layout.about_activity);
 
-        String aboutContent = getString(R.string.about);
-        SpannableString spanAboutText = new SpannableString(aboutContent);
-
-        //Make the title of the section bigger and brown, and the content black
-
-        spanAboutText.setSpan(new ForegroundColorSpan(Color.BLACK), 0, aboutContent.length(),0);
-
-        //Set the text in the TextView
         TextView generalDescView = (TextView) findViewById(R.id.aboutTextView);
-        generalDescView.setText(spanAboutText);
+        generalDescView.setText(getString(R.string.about));
 
         actionToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         actionToolbar.setTitleTextColor(0xFFFFFFFF);

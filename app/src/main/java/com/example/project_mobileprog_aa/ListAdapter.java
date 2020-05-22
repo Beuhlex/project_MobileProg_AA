@@ -3,6 +3,7 @@ package com.example.project_mobileprog_aa;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,16 +56,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         }
     }
 
-    public void add(int position, ZeldaGames item) {
-        values.add(position, item);
-        notifyItemInserted(position);
-    }
-
-    public void remove(int position) {
-        values.remove(position);
-        notifyItemRemoved(position);
-    }
-
     // Provide a suitable constructor (depends on the kind of dataset)
     public ListAdapter(List<ZeldaGames> myDataset, OnGameListener onGameListener) {
         values = myDataset;
@@ -89,20 +83,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // - replace the contents of the view with that element
         final ZeldaGames currentZeldaGame = values.get(position);
         holder.txtHeader.setText(currentZeldaGame.getName());
-        /*holder.layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //remove(position);
-
-                //NavHostFragment.findNavController().navigate();
-
-                //Intent intent = new Intent(new MainActivity(), itemDescription.class);
-                //mContext.startActivity(intent);
-            }
-        });*/
-
 
         holder.txtFooter.setText("Release year: " + currentZeldaGame.getRelease_year_in_Europe());
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            holder.txtHeader.setTextColor(ContextCompat.getColor(holder.txtHeader.getContext(), R.color.darkerWhite));
+            holder.txtFooter.setTextColor(ContextCompat.getColor(holder.txtFooter.getContext(), R.color.darkerWhite));
+        }else{
+            holder.txtHeader.setTextColor(ContextCompat.getColor(holder.txtHeader.getContext(), R.color.neutralGrey));
+            holder.txtFooter.setTextColor(ContextCompat.getColor(holder.txtFooter.getContext(), R.color.neutralGrey));
+        }
         Picasso.get().load(currentZeldaGame.getImg_Cover_URL()).resize(100,100).into(holder.mImg);
     }
 
