@@ -1,5 +1,7 @@
 package com.example.project_mobileprog_aa;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -9,7 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.gson.GsonBuilder;
 
 public class aboutActivity extends AppCompatActivity {
 
@@ -19,7 +24,16 @@ public class aboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.darkTheme);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("app_AA", Context.MODE_PRIVATE);
+
+        int savedTheme = sharedPreferences.getInt(Constants.KEY_APPTHEME, 1);
+
+        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.darkTheme);
+        }else{
+            setTheme(R.style.lightTheme);
+        }
         setContentView(R.layout.about_activity);
 
         TextView generalDescView = (TextView) findViewById(R.id.aboutTextView);

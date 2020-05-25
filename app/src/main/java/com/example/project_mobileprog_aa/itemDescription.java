@@ -2,6 +2,7 @@ package com.example.project_mobileprog_aa;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -35,10 +36,16 @@ public class itemDescription extends AppCompatActivity{
 
     private Gson gson;
     private Toolbar actionToolbar;
+    private SharedPreferences sharedPreferences;
+    private int savedTheme;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+
+        sharedPreferences = getSharedPreferences("app_AA", Context.MODE_PRIVATE);
+        savedTheme = sharedPreferences.getInt(Constants.KEY_APPTHEME, 1);
+
+        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.darkTheme);
         }else{
             setTheme(R.style.lightTheme);
@@ -73,7 +80,7 @@ public class itemDescription extends AppCompatActivity{
         //Set the text in the TextView
         TextView generalDescView = (TextView) findViewById(R.id.itemDescGeneral);
         spanGeneralDesc.setSpan(new ForegroundColorSpan(ContextCompat.getColor(generalDescView.getContext(),R.color.descSectionTitle)), 0,23,0);
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
             spanGeneralDesc.setSpan(new ForegroundColorSpan(ContextCompat.getColor(generalDescView.getContext(), R.color.darkerWhite)), 23, generalDesc.length(),0);
         }else{
             spanGeneralDesc.setSpan(new ForegroundColorSpan(ContextCompat.getColor(generalDescView.getContext(), R.color.black)), 23, generalDesc.length(),0);
@@ -97,6 +104,12 @@ public class itemDescription extends AppCompatActivity{
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu, menu);
 
+        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
+            menu.getItem(0).setChecked(true);
+        }else{
+            menu.getItem(0).setChecked(false);
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -109,10 +122,22 @@ public class itemDescription extends AppCompatActivity{
                 startActivity(intent);
                 break;
             case R.id.dark_mode:
-                if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES){
+                    sharedPreferences
+                            .edit()
+                            .putInt(Constants.KEY_APPTHEME, 1)
+                            .apply();
+
+                    setTheme(R.style.lightTheme);
+                    startActivity(getIntent());
                 }else{
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    sharedPreferences
+                            .edit()
+                            .putInt(Constants.KEY_APPTHEME, 2)
+                            .apply();
+
+                    setTheme(R.style.lightTheme);
+                    startActivity(getIntent());
                 }
                 break;
             default:

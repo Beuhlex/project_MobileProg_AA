@@ -3,6 +3,7 @@ package com.example.project_mobileprog_aa;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,9 +85,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         final ZeldaGames currentZeldaGame = values.get(position);
         holder.txtHeader.setText(currentZeldaGame.getName());
 
+        SharedPreferences sharedPreferences = holder.txtHeader.getContext().getSharedPreferences("app_AA", Context.MODE_PRIVATE);
+        int savedTheme = sharedPreferences.getInt(Constants.KEY_APPTHEME, 1);
+
+
         holder.txtFooter.setText("Release year: " + currentZeldaGame.getRelease_year_in_Europe());
 
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
             holder.txtHeader.setTextColor(ContextCompat.getColor(holder.txtHeader.getContext(), R.color.darkerWhite));
             holder.txtFooter.setTextColor(ContextCompat.getColor(holder.txtFooter.getContext(), R.color.darkerWhite));
         }else{

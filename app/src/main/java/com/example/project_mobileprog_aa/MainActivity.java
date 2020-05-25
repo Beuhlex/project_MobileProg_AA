@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
     private SharedPreferences sharedPreferences;
     private Gson gson;
     private List<ZeldaGames> lozGamesList;
+    private int savedTheme;
     private Toolbar toolbar;
 
     private static final String BASE_URL = "https://raw.githubusercontent.com/Beuhlex/project_MobileProg_AA/master/";
@@ -54,8 +55,9 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
                 .create();
 
         lozGamesList = getDataFromCache();
+        savedTheme = sharedPreferences.getInt(Constants.KEY_APPTHEME, 1);
 
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.darkTheme);
         }else{
             setTheme(R.style.lightTheme);
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu, menu);
 
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
             menu.getItem(0).setChecked(true);
         }else{
             menu.getItem(0).setChecked(false);
@@ -100,10 +102,26 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
                 startActivity(intent);
                 break;
             case R.id.dark_mode:
-                if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES){
+                    sharedPreferences
+                            .edit()
+                            .putInt(Constants.KEY_APPTHEME, 1)
+                            .apply();
+
+                    setTheme(R.style.lightTheme);
+
+                    finish();
+                    startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
                 }else{
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    sharedPreferences
+                            .edit()
+                            .putInt(Constants.KEY_APPTHEME, 2)
+                            .apply();
+
+                    setTheme(R.style.darkTheme);
+
+                    finish();
+                    startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
                 }
                 break;
             default:
@@ -113,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
     }
 
     private List<ZeldaGames> getDataFromCache() {
-        String jsonLozGames = sharedPreferences.getString("Constant.KEY_LOZGAMES_LIST", null);
+        String jsonLozGames = sharedPreferences.getString(Constants.KEY_LOZGAMES_LIST, null);
 
         if(jsonLozGames == null){
             return null;
@@ -171,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
         String jsonString = gson.toJson(lozList);
         sharedPreferences
                 .edit()
-                .putString("Constant.KEY_LOZGAMES_LIST", jsonString)
+                .putString(Constants.KEY_LOZGAMES_LIST, jsonString)
                 .apply();
 
         Toast.makeText(getApplicationContext(), "List Saved", Toast.LENGTH_SHORT).show();
