@@ -1,6 +1,9 @@
 package com.example.project_mobileprog_aa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -32,13 +38,15 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
     private SharedPreferences sharedPreferences;
     private Gson gson;
     private List<ZeldaGames> lozGamesList;
+    private int savedTheme;
+    private Toolbar toolbar;
 
     private static final String BASE_URL = "https://raw.githubusercontent.com/Beuhlex/project_MobileProg_AA/master/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
 
         sharedPreferences = getSharedPreferences("app_AA", Context.MODE_PRIVATE);
 
@@ -47,16 +55,83 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
                 .create();
 
         lozGamesList = getDataFromCache();
+        savedTheme = sharedPreferences.getInt(Constants.KEY_APPTHEME, 1);
+
+        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.darkTheme);
+        }else{
+            setTheme(R.style.lightTheme);
+        }
+        setContentView(R.layout.activity_main);
 
         if(lozGamesList != null){
             showList(lozGamesList);
         }else{
             makeApiCall();
         }
+
+        //Create a toolbar so that we can customize the title and put the name of the game on which the user clicked
+        toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.app_name);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) { //creates action menu
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+
+        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
+            menu.getItem(0).setChecked(true);
+        }else{
+            menu.getItem(0).setChecked(false);
+        }
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {  //detects what item is selected
+        switch(item.getItemId())
+        {
+            case R.id.about:
+                Intent intent = new Intent(this, aboutActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.dark_mode:
+                if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES){
+                    sharedPreferences
+                            .edit()
+                            .putInt(Constants.KEY_APPTHEME, 1)
+                            .apply();
+
+                    setTheme(R.style.lightTheme);
+
+                    finish();
+                    startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
+                }else{
+                    sharedPreferences
+                            .edit()
+                            .putInt(Constants.KEY_APPTHEME, 2)
+                            .apply();
+
+                    setTheme(R.style.darkTheme);
+
+                    finish();
+                    startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
+                }
+                break;
+            default:
+                //unknown error
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private List<ZeldaGames> getDataFromCache() {
-        String jsonLozGames = sharedPreferences.getString("Constant.KEY_LOZGAMES_LIST", null);
+        String jsonLozGames = sharedPreferences.getString(Constants.KEY_LOZGAMES_LIST, null);
 
         if(jsonLozGames == null){
             return null;
@@ -114,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
         String jsonString = gson.toJson(lozList);
         sharedPreferences
                 .edit()
-                .putString("Constant.KEY_LOZGAMES_LIST", jsonString)
+                .putString(Constants.KEY_LOZGAMES_LIST, jsonString)
                 .apply();
 
         Toast.makeText(getApplicationContext(), "List Saved", Toast.LENGTH_SHORT).show();

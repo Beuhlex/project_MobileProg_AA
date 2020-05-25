@@ -1,0 +1,54 @@
+package com.example.project_mobileprog_aa;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.gson.GsonBuilder;
+
+public class aboutActivity extends AppCompatActivity {
+
+    private Toolbar actionToolbar;
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("app_AA", Context.MODE_PRIVATE);
+
+        int savedTheme = sharedPreferences.getInt(Constants.KEY_APPTHEME, 1);
+
+        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.darkTheme);
+        }else{
+            setTheme(R.style.lightTheme);
+        }
+        setContentView(R.layout.about_activity);
+
+        TextView generalDescView = (TextView) findViewById(R.id.aboutTextView);
+        generalDescView.setText(getString(R.string.about));
+
+        actionToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        actionToolbar.setTitleTextColor(0xFFFFFFFF);
+        setSupportActionBar(actionToolbar);
+        getSupportActionBar().setTitle("About");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+}

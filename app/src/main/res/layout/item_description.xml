@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="?attr/bgColor">
 
     <ImageView
         android:id="@+id/gameCover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_actionbar"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:background="#FFFFFF"
+        android:background="?attr/textBgColor"
         android:elevation="10dp"
         android:text="@string/generalCharacteristics"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,5 +32,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameCover"
         app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="?attr/toolbarColor"
+        android:fitsSystemWindows="true"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/WhiteSecondaryItems"
+        app:popupTheme="@style/CustomPopupStyle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

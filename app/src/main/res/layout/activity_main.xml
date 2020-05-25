@@ -10,7 +10,24 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F5F5F5"
-        android:scrollbars="vertical" />
+        android:layout_marginTop="56dp"
+        android:background="?attr/bgColor"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_actionbar"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="?attr/toolbarColor"
+        android:fitsSystemWindows="true"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/WhiteSecondaryItems"
+        app:popupTheme="@style/CustomPopupStyle"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

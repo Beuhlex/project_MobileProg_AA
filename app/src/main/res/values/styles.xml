@@ -8,4 +8,38 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Deletes the action bar. -->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- White secondary items on the toolbar. -->
+    <style name="WhiteSecondaryItems" parent="AppTheme">
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <!-- Menu Item Theme. -->
+    <style name="CustomPopupStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="overlapAnchor">false</item>
+    </style>
+
+    <style name="lightTheme" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="textColor">#000000</item>
+        <item name="bgColor">@color/darkerWhite</item>
+        <item name="textBgColor">@color/white</item>
+        <item name="toolbarColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="darkTheme" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="textColor">@color/darkerWhite</item>
+        <item name="bgColor">@color/darkGrey</item>
+        <item name="textBgColor">@color/neutralGrey</item>
+        <item name="toolbarColor">@color/colorPrimary</item>
+    </style>
+
 </resources>
