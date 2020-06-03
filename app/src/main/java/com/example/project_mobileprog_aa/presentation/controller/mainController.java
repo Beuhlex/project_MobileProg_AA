@@ -147,7 +147,7 @@ public class mainController {
         }
 
         ma.finish();
-        ma.startActivity(new Intent(ma, ma.getClass()));
+        ma.startActivity(ma.getIntent());
     }
 
     public void startItemActivity(int position){
