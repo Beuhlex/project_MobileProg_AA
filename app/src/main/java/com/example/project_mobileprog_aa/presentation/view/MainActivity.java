@@ -8,78 +8,58 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.project_mobileprog_aa.Constants;
 import com.example.project_mobileprog_aa.R;
-import com.example.project_mobileprog_aa.data.LozApi;
-import com.example.project_mobileprog_aa.presentation.model.RestZeldaGamesResponse;
+import com.example.project_mobileprog_aa.presentation.controller.mainController;
 import com.example.project_mobileprog_aa.presentation.model.ZeldaGames;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements ListAdapter.OnGameListener {
 
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private SharedPreferences sharedPreferences;
-    private Gson gson;
-    private List<ZeldaGames> lozGamesList;
-    private int savedTheme;
+    private mainController mc;
     private Toolbar toolbar;
 
-    private static final String BASE_URL = "https://raw.githubusercontent.com/Beuhlex/project_MobileProg_AA/master/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mc = new mainController(this,
+                new GsonBuilder()
+                        .setLenient()
+                        .create(),
+               getSharedPreferences("app_AA", Context.MODE_PRIVATE));
+        mc.onStart();
 
-        sharedPreferences = getSharedPreferences("app_AA", Context.MODE_PRIVATE);
+        setUpToolbar();
+    }
 
-        gson = new GsonBuilder()
-                .setLenient()
-                .create();
+    private void setUpToolbar(){
+        //Create a toolbar so that we can customize the title and put the name of the game on which the user clicked
+        toolbar = findViewById(R.id.toolbar_actionbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.app_name);
+    }
 
-        lozGamesList = getDataFromCache();
-        savedTheme = sharedPreferences.getInt(Constants.KEY_APPTHEME, 1);
 
+    public void loadTheme(int savedTheme){
         if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.darkTheme);
         }else{
             setTheme(R.style.lightTheme);
         }
         setContentView(R.layout.activity_main);
-
-        if(lozGamesList != null){
-            showList(lozGamesList);
-        }else{
-            makeApiCall();
-        }
-
-        //Create a toolbar so that we can customize the title and put the name of the game on which the user clicked
-        toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
-        toolbar.setTitleTextColor(0xFFFFFFFF);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.app_name);
     }
 
 
@@ -88,131 +68,42 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu, menu);
 
-        if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
+        if(mc.savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
             menu.getItem(0).setChecked(true);
         }else{
             menu.getItem(0).setChecked(false);
         }
-
 
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {  //detects what item is selected
-        switch(item.getItemId())
-        {
-            case R.id.about:
-                Intent intent = new Intent(this, aboutActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.dark_mode:
-                if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES){
-                    sharedPreferences
-                            .edit()
-                            .putInt(Constants.KEY_APPTHEME, 1)
-                            .apply();
-
-                    setTheme(R.style.lightTheme);
-
-                    finish();
-                    startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
-                }else{
-                    sharedPreferences
-                            .edit()
-                            .putInt(Constants.KEY_APPTHEME, 2)
-                            .apply();
-
-                    setTheme(R.style.darkTheme);
-
-                    finish();
-                    startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
-                }
-                break;
-            default:
-                //unknown error
-        }
+        mc.spinnerItemSelected(item);
         return super.onOptionsItemSelected(item);
     }
 
-    private List<ZeldaGames> getDataFromCache() {
-        String jsonLozGames = sharedPreferences.getString(Constants.KEY_LOZGAMES_LIST, null);
 
-        if(jsonLozGames == null){
-            return null;
-        }else{
-            Type listType = new TypeToken<List<ZeldaGames>>(){}.getType();
-            return gson.fromJson(jsonLozGames, listType);
-        }
-    }
 
-    private void showList(List<ZeldaGames> lozGamesList){
+    public void showList(List<ZeldaGames> lozGamesList){
         recyclerView = findViewById(R.id.recycler_view);
 
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        final List<String> input = new ArrayList<>();
 
         mAdapter = new ListAdapter(lozGamesList, this);
         recyclerView.setAdapter(mAdapter);
     }
 
-    private void makeApiCall(){
-
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        LozApi lozapi = retrofit.create(LozApi.class);
-
-        Call<RestZeldaGamesResponse> call = lozapi.getZeldaGamesResponse();
-        call.enqueue(new Callback<RestZeldaGamesResponse>() {
-            @Override
-            public void onResponse(Call<RestZeldaGamesResponse> call, Response<RestZeldaGamesResponse> response) {
-                if(response.isSuccessful() && response.body() != null){
-                    List<ZeldaGames> zeldaGamesList = response.body().getResults();
-                    saveList(zeldaGamesList);
-                    showList(zeldaGamesList);
-                }else{
-                    showError();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RestZeldaGamesResponse> call, Throwable t) {
-                showError();
-            }
-        });
-
-    }
-
-    private void saveList(List<ZeldaGames> lozList){
-        String jsonString = gson.toJson(lozList);
-        sharedPreferences
-                .edit()
-                .putString(Constants.KEY_LOZGAMES_LIST, jsonString)
-                .apply();
-
-        Toast.makeText(getApplicationContext(), "List Saved", Toast.LENGTH_SHORT).show();
-
-    }
-
-    private void showError() {
+    public void showError() {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onGameClick(int position) {
-        String jsonString = gson.toJson(lozGamesList);
-
-
-        Intent intent = new Intent(this, itemDescription.class);
-        intent.putExtra("EXTRA_LIST", jsonString);
-        intent.putExtra("EXTRA_POSITION", position);
-        startActivity(intent);
+        mc.startItemActivity(position);
     }
+
 }
