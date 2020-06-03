@@ -1,10 +1,9 @@
-package com.example.project_mobileprog_aa;
+package com.example.project_mobileprog_aa.data;
 
-import java.util.List;
+import com.example.project_mobileprog_aa.presentation.model.RestZeldaGamesResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 public interface LozApi {
 

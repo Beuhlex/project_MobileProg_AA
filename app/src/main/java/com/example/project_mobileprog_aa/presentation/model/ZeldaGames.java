@@ -1,4 +1,4 @@
-package com.example.project_mobileprog_aa;
+package com.example.project_mobileprog_aa.presentation.model;
 
 import okhttp3.internal.platform.Platform;
 

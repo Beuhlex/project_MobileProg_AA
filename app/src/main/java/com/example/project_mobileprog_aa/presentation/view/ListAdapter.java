@@ -1,25 +1,20 @@
-package com.example.project_mobileprog_aa;
+package com.example.project_mobileprog_aa.presentation.view;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project_mobileprog_aa.Constants;
+import com.example.project_mobileprog_aa.R;
+import com.example.project_mobileprog_aa.presentation.model.ZeldaGames;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.project_mobileprog_aa;
+package com.example.project_mobileprog_aa.presentation.view;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.project_mobileprog_aa.Constants;
+import com.example.project_mobileprog_aa.R;
 import com.google.gson.GsonBuilder;
 
 public class aboutActivity extends AppCompatActivity {

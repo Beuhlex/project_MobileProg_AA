@@ -1,4 +1,4 @@
-package com.example.project_mobileprog_aa;
+package com.example.project_mobileprog_aa.presentation.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.project_mobileprog_aa.Constants;
+import com.example.project_mobileprog_aa.R;
+import com.example.project_mobileprog_aa.data.LozApi;
+import com.example.project_mobileprog_aa.presentation.model.RestZeldaGamesResponse;
+import com.example.project_mobileprog_aa.presentation.model.ZeldaGames;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

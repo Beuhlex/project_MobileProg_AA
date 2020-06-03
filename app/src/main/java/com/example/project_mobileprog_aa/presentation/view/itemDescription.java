@@ -1,4 +1,4 @@
-package com.example.project_mobileprog_aa;
+package com.example.project_mobileprog_aa.presentation.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,23 +11,22 @@ import android.text.style.RelativeSizeSpan;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
+import com.example.project_mobileprog_aa.Constants;
+import com.example.project_mobileprog_aa.R;
+import com.example.project_mobileprog_aa.presentation.model.ZeldaGames;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.lang.reflect.Type;
 import java.util.List;
