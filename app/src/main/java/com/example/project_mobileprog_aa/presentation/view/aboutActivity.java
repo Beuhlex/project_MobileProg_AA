@@ -16,32 +16,38 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.project_mobileprog_aa.Constants;
 import com.example.project_mobileprog_aa.R;
+import com.example.project_mobileprog_aa.presentation.controller.aboutController;
 import com.google.gson.GsonBuilder;
 
 public class aboutActivity extends AppCompatActivity {
 
     private Toolbar actionToolbar;
+    private aboutController ac;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("app_AA", Context.MODE_PRIVATE);
+        ac = new aboutController(this, getSharedPreferences("app_AA", Context.MODE_PRIVATE));
+        ac.onStart();
 
-        int savedTheme = sharedPreferences.getInt(Constants.KEY_APPTHEME, 1);
 
+
+        setUpToolbar();
+    }
+
+    public void loadTheme(int savedTheme){
         if(savedTheme == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.darkTheme);
         }else{
             setTheme(R.style.lightTheme);
         }
         setContentView(R.layout.about_activity);
+    }
 
-        TextView generalDescView = (TextView) findViewById(R.id.aboutTextView);
-        generalDescView.setText(getString(R.string.about));
-
-        actionToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+    private void setUpToolbar(){
+        actionToolbar = findViewById(R.id.toolbar_actionbar);
         actionToolbar.setTitleTextColor(0xFFFFFFFF);
         setSupportActionBar(actionToolbar);
         getSupportActionBar().setTitle("About");
