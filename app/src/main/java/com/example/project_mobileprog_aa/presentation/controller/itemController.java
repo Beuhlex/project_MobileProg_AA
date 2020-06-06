@@ -17,14 +17,12 @@ import androidx.core.content.ContextCompat;
 
 import com.example.project_mobileprog_aa.Constants;
 import com.example.project_mobileprog_aa.R;
+import com.example.project_mobileprog_aa.Singletons;
 import com.example.project_mobileprog_aa.presentation.model.ZeldaGames;
-import com.example.project_mobileprog_aa.presentation.view.aboutActivity;
 import com.example.project_mobileprog_aa.presentation.view.itemDescription;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 public class itemController {
@@ -45,13 +43,12 @@ public class itemController {
 
         id.loadTheme(savedTheme);
 
-        List<ZeldaGames> lozGameList = getZeldaGamesList();
-        ZeldaGames gameClicked = getGameClicked(getPositionClicked(), lozGameList);
+        ZeldaGames gameClicked = getGameClicked(getPositionClicked(), Singletons.getLozGamesList(id.getApplicationContext()));
 
         setDescription(gameClicked);
 
         //Set the cover image of the game at the top of the page
-        Picasso.get().load(lozGameList.get(getPositionClicked()).getImg_Cover_URL()).into((ImageView) id.findViewById(R.id.gameCover));
+        Picasso.get().load(Singletons.getLozGamesList(id.getApplicationContext()).get(getPositionClicked()).getImg_Cover_URL()).into((ImageView) id.findViewById(R.id.gameCover));
 
         setUpToolbar(gameClicked);
     }
@@ -63,16 +60,6 @@ public class itemController {
     private ZeldaGames getGameClicked(int positionClicked, List<ZeldaGames> lozGameList){
         //Get the game on which the user clicked
         return lozGameList.get(positionClicked);
-    }
-
-    private List<ZeldaGames> getZeldaGamesList(){
-        //Getting the string containing our item list, and the position clicked.
-        String jsonString = id.getIntent().getStringExtra("EXTRA_LIST");
-
-        //Convert the string of the list back into a list
-        Type listType = new TypeToken<List<ZeldaGames>>(){}.getType();
-
-        return gson.fromJson(jsonString, listType);
     }
 
     private void setDescription(ZeldaGames gameClicked){
@@ -121,8 +108,8 @@ public class itemController {
     }
 
     public void buttonAboutClick(){
-        Intent intent = new Intent(id, aboutActivity.class);
-        id.startActivity(intent);
+        //Intent intent = new Intent(id, aboutActivity.class);
+        id.startActivity(Singletons.getAboutIntent(id));
     }
 
     public void buttonDarkModeClick(){

@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.project_mobileprog_aa.R;
+import com.example.project_mobileprog_aa.Singletons;
 import com.example.project_mobileprog_aa.presentation.controller.itemController;
-import com.google.gson.GsonBuilder;
 
 public class itemDescription extends AppCompatActivity{
 
@@ -22,11 +22,7 @@ public class itemDescription extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        ic = new itemController(this,
-                new GsonBuilder()
-                        .setLenient()
-                        .create(),
-                getSharedPreferences("app_AA", Context.MODE_PRIVATE));
+        ic = new itemController(this, Singletons.getGson(), Singletons.getSharedPreferences(getApplicationContext()));
 
         ic.onStart();
     }

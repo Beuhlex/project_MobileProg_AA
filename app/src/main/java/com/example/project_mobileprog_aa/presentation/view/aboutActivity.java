@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.project_mobileprog_aa.Constants;
 import com.example.project_mobileprog_aa.R;
+import com.example.project_mobileprog_aa.Singletons;
 import com.example.project_mobileprog_aa.presentation.controller.aboutController;
 import com.google.gson.GsonBuilder;
 
@@ -29,7 +30,7 @@ public class aboutActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ac = new aboutController(this, getSharedPreferences("app_AA", Context.MODE_PRIVATE));
+        ac = new aboutController(this, Singletons.getSharedPreferences(getApplicationContext()));
         ac.onStart();
 
 

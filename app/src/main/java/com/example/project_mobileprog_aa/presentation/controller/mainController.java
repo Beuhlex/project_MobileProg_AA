@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.example.project_mobileprog_aa.Constants;
 import com.example.project_mobileprog_aa.R;
+import com.example.project_mobileprog_aa.Singletons;
 import com.example.project_mobileprog_aa.data.LozApi;
 import com.example.project_mobileprog_aa.presentation.model.RestZeldaGamesResponse;
 import com.example.project_mobileprog_aa.presentation.model.ZeldaGames;
@@ -46,37 +47,17 @@ public class mainController {
 
         ma.loadTheme(savedTheme);
 
-        lozGamesList = getDataFromCache();
-        if(lozGamesList != null){
-            ma.showList(lozGamesList);
+        if(Singletons.getLozGamesList(ma.getApplicationContext()) != null){
+            ma.showList(Singletons.getLozGamesList(ma.getApplicationContext()));
         }else{
             makeApiCall();
         }
     }
 
-    private List<ZeldaGames> getDataFromCache() {
-        String jsonLozGames = sharedPreferences.getString(Constants.KEY_LOZGAMES_LIST, null);
-
-        if(jsonLozGames == null){
-            return null;
-        }else{
-            Type listType = new TypeToken<List<ZeldaGames>>(){}.getType();
-            return gson.fromJson(jsonLozGames, listType);
-        }
-    }
-
-
     private void makeApiCall(){
 
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        LozApi lozapi = retrofit.create(LozApi.class);
-
-        Call<RestZeldaGamesResponse> call = lozapi.getZeldaGamesResponse();
+        Call<RestZeldaGamesResponse> call = Singletons.getLozApi().getZeldaGamesResponse();
         call.enqueue(new Callback<RestZeldaGamesResponse>() {
             @Override
             public void onResponse(Call<RestZeldaGamesResponse> call, Response<RestZeldaGamesResponse> response) {
@@ -122,8 +103,8 @@ public class mainController {
     }
 
     public void buttonAboutClick(){
-        Intent intent = new Intent(ma, aboutActivity.class);
-        ma.startActivity(intent);
+        //Intent intent = new Intent(ma, aboutActivity.class);
+        ma.startActivity(Singletons.getAboutIntent(ma));
     }
 
     public void buttonDarkModeClick(){
@@ -151,11 +132,7 @@ public class mainController {
     }
 
     public void startItemActivity(int position){
-        String jsonString = gson.toJson(lozGamesList);
-
-
         Intent intent = new Intent(ma, itemDescription.class);
-        intent.putExtra("EXTRA_LIST", jsonString);
         intent.putExtra("EXTRA_POSITION", position);
         ma.startActivity(intent);
     }

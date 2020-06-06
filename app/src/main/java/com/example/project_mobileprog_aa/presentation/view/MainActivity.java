@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.project_mobileprog_aa.R;
+import com.example.project_mobileprog_aa.Singletons;
 import com.example.project_mobileprog_aa.presentation.controller.mainController;
 import com.example.project_mobileprog_aa.presentation.model.ZeldaGames;
 import com.google.gson.GsonBuilder;
@@ -34,11 +35,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mc = new mainController(this,
-                new GsonBuilder()
-                        .setLenient()
-                        .create(),
-               getSharedPreferences("app_AA", Context.MODE_PRIVATE));
+        mc = new mainController(this, Singletons.getGson(),Singletons.getSharedPreferences(getApplicationContext()));
         mc.onStart();
 
         setUpToolbar();
