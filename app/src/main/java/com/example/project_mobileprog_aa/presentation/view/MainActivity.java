@@ -59,6 +59,14 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnGam
         setContentView(R.layout.activity_main);
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+
+        mc.onStart();
+        setUpToolbar();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) { //creates action menu

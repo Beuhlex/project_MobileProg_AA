@@ -28,10 +28,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class mainController {
 
-    public SharedPreferences sharedPreferences;
-    public Gson gson;
+    private SharedPreferences sharedPreferences;
+    private Gson gson;
     public int savedTheme;
-    public List<ZeldaGames> lozGamesList;
     private MainActivity ma;
 
 
@@ -102,24 +101,29 @@ public class mainController {
         }
     }
 
-    public void buttonAboutClick(){
+    private void buttonAboutClick(){
         //Intent intent = new Intent(ma, aboutActivity.class);
         ma.startActivity(Singletons.getAboutIntent(ma));
     }
 
-    public void buttonDarkModeClick(){
-        updatePreferencesTheme((savedTheme%2)+1);
-        reloadTheme((savedTheme%2)+1);
+    private void buttonDarkModeClick(){
+        if(savedTheme == 1){
+            updatePreferencesTheme(2);
+            reloadTheme(2);
+        }else{
+            updatePreferencesTheme(1);
+            reloadTheme(1);
+        }
     }
 
-    public void updatePreferencesTheme(int appTheme) {
+    private void updatePreferencesTheme(int appTheme) {
         sharedPreferences
                 .edit()
                 .putInt(Constants.KEY_APPTHEME, appTheme)
                 .apply();
     }
 
-    public void reloadTheme(int appTheme){
+    private void reloadTheme(int appTheme){
         //Maybe create a function for this in MainActivity? Not sure tho
         if(appTheme==1) {//If we are in dark mode
             ma.setTheme(R.style.lightTheme);
