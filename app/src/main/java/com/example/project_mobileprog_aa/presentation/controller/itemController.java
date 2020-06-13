@@ -113,8 +113,13 @@ public class itemController {
     }
 
     public void buttonDarkModeClick(){
-        updatePreferencesTheme((savedTheme%2)+1);
-        reloadTheme((savedTheme%2)+1);
+        if(savedTheme == 1){
+            updatePreferencesTheme(2);
+            reloadTheme(2);
+        }else{
+            updatePreferencesTheme(1);
+            reloadTheme(1);
+        }
     }
 
     public void updatePreferencesTheme(int appTheme) {
