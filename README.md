@@ -22,7 +22,7 @@ Aurélien Andrieux
 -	Ecran avec le détail d’un élément.
 -	Appel WebService à une API Rest.
 -	Stockage de données en cache.
-	-	Architecture
+-	Architecture
 	-	Singleton
 	-	MVC
 	-	SOLID
